@@ -7,12 +7,12 @@
             "label": "rebuild",
             "type": "shell",
             "command": "sudo nixos-rebuild switch"
-        }
+        },
         {
             "label": "rebuild and upgrade",
             "type": "shell",
             "command": "sudo nixos-rebuild switch --upgrade"
-        }
+        },
         {
             "label": "garbage collection",
             "type": "shell",
