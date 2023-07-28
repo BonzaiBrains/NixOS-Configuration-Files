@@ -120,6 +120,7 @@
     virt-manager
     pciutils
     git
+    wine
     # Lutris pkgs
     (lutris.override {
        extraPkgs = pkgs: [
