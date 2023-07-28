@@ -104,7 +104,8 @@
       pcsx2
       alacritty
       links2
-      glances
+      htop
+      tmux
       vscode
     ];
   };
@@ -112,14 +113,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile. 
   environment.systemPackages = with pkgs; [
     neovim
     qemu
     virt-manager
     pciutils
-    tmux
     git
     # Lutris pkgs
     (lutris.override {
@@ -135,15 +134,27 @@
     noisetorch.enable = true;
     dconf.enable = true;
     steam.enable = true;
+    # Chromium extensions
     chromium = {
       enable = true;
       extensions = [
+        # Values can be found on the Chrome Webstore 
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
       ];
     };
+    # Shell aliases
     bash.shellAliases = {
       vim = "nvim";
       vi = "nvim";
+    };
+    # Tmux configuration
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        set-option -g mouse on
+        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
+        run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+      '';
     };
   };
 
