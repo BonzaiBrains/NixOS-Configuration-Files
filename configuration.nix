@@ -98,15 +98,17 @@
     description = "adrian";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      # desktop applications
       chromium
-      kate
-      neofetch
+      vscode
+      # emulators
       pcsx2
-      alacritty
+      rpcs3
+      # terminal applications
       links2
+      neofetch
       htop
       tmux
-      vscode
     ];
   };
 
