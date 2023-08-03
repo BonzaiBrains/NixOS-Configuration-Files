@@ -13,8 +13,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   networking.hostName = "workstation"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -34,16 +32,16 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
+  i18n.extraLocaleSettings = rec {
     LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    LC_IDENTIFICATION = LC_ADDRESS;
+    LC_MEASUREMENT = LC_ADDRESS;
+    LC_MONETARY = LC_ADDRESS;
+    LC_NAME = LC_ADDRESS;
+    LC_NUMERIC = LC_ADDRESS;
+    LC_PAPER = LC_ADDRESS;
+    LC_TELEPHONE = LC_ADDRESS;
+    LC_TIME = LC_ADDRESS;
   };
 
   # Enable the X11 windowing system.
@@ -63,12 +61,6 @@
 
   hardware.bluetooth.enable = true;
   
-  boot.zfs.extraPools = [ "raid1" ];
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
-  networking.hostId = "80937f73";
-
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -109,9 +101,6 @@
       pfetch
       glances
       tmux
-      # languages
-      rustc
-      rustup
     ];
   };
 
