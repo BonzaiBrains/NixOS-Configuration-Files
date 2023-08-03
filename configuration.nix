@@ -103,12 +103,15 @@
       vscode
       # emulators
       pcsx2
-      rpcs3
+      pcsxr
       # terminal applications
       links2
-      neofetch
-      htop
+      pfetch
+      glances
       tmux
+      # languages
+      rustc
+      rustup
     ];
   };
 
