@@ -91,7 +91,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       # desktop applications
-      chromium
+      firefox
       vscode
       # emulators
       pcsx2
@@ -129,14 +129,6 @@
     noisetorch.enable = true;
     dconf.enable = true;
     steam.enable = true;
-    # Chromium extensions
-    chromium = {
-      enable = true;
-      extensions = [
-        # Values can be found on the Chrome Webstore 
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-      ];
-    };
     # Shell aliases
     bash.shellAliases = {
       vim = "nvim";
