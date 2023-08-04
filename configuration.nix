@@ -97,11 +97,8 @@
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           ms-python.python
-          ms-python.pylance
-        ]; ++  pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "nix-ide";
-          }
+          ms-python.vscode-pylance
+          jnoortheen.nix-ide
         ];
       })
       # emulators
