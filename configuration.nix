@@ -92,7 +92,6 @@
     packages = with pkgs; [
       # desktop applications
       firefox
-      
       # vscode config
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
