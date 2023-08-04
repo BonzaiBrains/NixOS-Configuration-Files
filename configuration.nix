@@ -92,7 +92,18 @@
     packages = with pkgs; [
       # desktop applications
       firefox
-      vscode
+      
+      # vscode config
+      (vscode-with-extensions.override {
+        vscodeExtensions = with vscode-extensions; [
+          ms-python.python
+          ms-python.pylance
+        ]; ++  pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "nix-ide";
+          }
+        ];
+      })
       # emulators
       pcsx2
       pcsxr
