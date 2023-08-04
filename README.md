@@ -52,15 +52,17 @@ Who is in the following groups:
 
 Who has the following packages:
 
-* chromium
-* kate
-* neofetch
-* pcsx2
-* alacritty
-* links2
-* htop
-* tmux
+* firefox
 * vscode
+    * python
+    * pylance
+    * nix-ide
+* pfetch
+* pcsx2
+* pcsxr
+* links2
+* glances
+* tmux
 
 ## System Configuration
 
@@ -82,8 +84,6 @@ Applies to the following packages:
 * noisetorch
 * dconf
 * steam
-* chromium
-    * extensions: `ublock origin`
 * bash
     * aliases: `vim, vi = neovim`
 * tmux
