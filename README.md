@@ -9,7 +9,7 @@
 | HDD | 4TB Toshiba NAS N300 / 4TB Seagate IronWolf ST4000VN006 |
 | SSD | 512GB Crucial P5 Plus / 2TB Kingston NV2 NVMe |
 | Case | Chenbro SR20969+ U3 |
-| Cpu Cooler | NH-D15 |
+| CPU Cooler | NH-D15 |
 
 # Altered Content
 
