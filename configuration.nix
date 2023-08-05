@@ -91,7 +91,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       # desktop applications
-      firefox
+      chromium
       # vscode config
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
@@ -151,6 +151,13 @@
         set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} %H:%M '
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
+    };
+    chromium = {
+      enable = true;
+      extensions = [
+        # Values can be found on the Chrome Webstore 
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+      ];
     };
   };
 

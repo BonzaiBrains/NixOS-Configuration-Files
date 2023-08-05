@@ -14,6 +14,11 @@
             "command": "sudo nixos-rebuild switch --upgrade"
         },
         {
+            "label": "rebuild fast",
+            "type": "shell",
+            "command": "sudo nixos-rebuild switch --fast"
+        },
+        {
             "label": "garbage collection",
             "type": "shell",
             "command": "sudo nix-collect-garbage"
