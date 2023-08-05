@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # virtualisation
+      ./virtualisation.nix
     ];
 
   # Bootloader.
@@ -58,7 +60,8 @@
 
   # Configure console keymap
   console.keyMap = "de";
-
+  
+  # Bluetooth
   hardware.bluetooth.enable = true;
   
   # Enable CUPS to print documents.
@@ -95,8 +98,6 @@
       # vscode config
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
-          ms-python.python
-          ms-python.vscode-pylance
           jnoortheen.nix-ide
         ];
       })
@@ -108,6 +109,7 @@
       pfetch
       glances
       tmux
+      nodejs
     ];
   };
 
@@ -132,6 +134,7 @@
     })
     # Notes
     obsidian
+    btrfs-progs
   ];
 
   programs = {
@@ -160,8 +163,6 @@
       ];
     };
   };
-
-  virtualisation.libvirtd.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
