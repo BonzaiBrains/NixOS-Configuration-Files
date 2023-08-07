@@ -108,7 +108,6 @@
       })
       # emulators
       pcsx2
-      pcsxr
       # terminal applications
       links2
       pfetch
