@@ -18,6 +18,8 @@
 
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
   security.polkit.enable = true;
@@ -50,6 +52,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   
+  
+
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   
@@ -120,8 +124,6 @@
   # List packages installed in system profile. 
   environment.systemPackages = with pkgs; [
     neovim
-    qemu
-    virt-manager
     pciutils
     git
     wine
@@ -135,7 +137,6 @@
     })
     # Notes
     obsidian
-    btrfs-progs
   ];
 
   programs = {
