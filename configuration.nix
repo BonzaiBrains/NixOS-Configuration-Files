@@ -8,21 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # virtualisation
-      ./virtualisation.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  
-
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
-  security.polkit.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -51,12 +43,11 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  
-  
 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     layout = "de";
@@ -65,10 +56,7 @@
 
   # Configure console keymap
   console.keyMap = "de";
-  
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -97,48 +85,57 @@
     isNormalUser = true;
     description = "adrian";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
-      # desktop applications
-      chromium
       # vscode config
       (vscode-with-extensions.override {
         vscodeExtensions = with vscode-extensions; [
           jnoortheen.nix-ide
+          ms-python.python
         ];
       })
       # emulators
       pcsx2
       # terminal applications
       links2
-      pfetch
-      glances
       tmux
       nodejs
+      firefox-wayland
+      # Notes
+      obsidian
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. 
-  environment.systemPackages = with pkgs; [
-    neovim
-    pciutils
-    git
-    wine
-    # Lutris pkgs
-    (lutris.override {
-       extraPkgs = pkgs: [
-         # List package dependencies here
-         wine64
-         winetricks
-       ];
-    })
-    # Notes
-    obsidian
-  ];
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment = {
+    gnome = {
+      excludePackages = with pkgs; [
+        epiphany
+        gnome-tour
+        yelp
+      ];
+    };
+    systemPackages = with pkgs; [
+      neovim
+      pciutils
+      git
+      wine
+      # Lutris pkgs
+      (lutris.override {
+         extraPkgs = pkgs: [
+           # List package dependencies here
+           wine64
+           winetricks
+         ];
+      })
+    ];
+  };
 
-  programs = {
+  programs = rec {
     noisetorch.enable = true;
     dconf.enable = true;
     steam.enable = true;
@@ -146,7 +143,10 @@
     bash.shellAliases = {
       vim = "nvim";
       vi = "nvim";
+      gedit = "gnome-text-editor";
     };
+    fish.enable = true;
+    fish.shellAliases = bash.shellAliases;
     # Tmux configuration
     tmux = {
       enable = true;
@@ -155,13 +155,6 @@
         set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} %H:%M '
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
-    };
-    chromium = {
-      enable = true;
-      extensions = [
-        # Values can be found on the Chrome Webstore 
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-      ];
     };
   };
 
