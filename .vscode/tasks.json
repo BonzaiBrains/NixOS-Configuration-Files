@@ -6,17 +6,17 @@
         {
             "label": "rebuild",
             "type": "shell",
-            "command": "sudo nixos-rebuild switch"
+            "command": "nixos-rebuild switch -use-remote-sudo"
         },
         {
             "label": "rebuild and upgrade",
             "type": "shell",
-            "command": "sudo nixos-rebuild switch --upgrade"
+            "command": "nixos-rebuild switch --upgrade --use-remote-sudo"
         },
         {
             "label": "rebuild fast",
             "type": "shell",
-            "command": "sudo nixos-rebuild switch --fast"
+            "command": "nixos-rebuild switch --fast --use-remote-sudo"
         },
         {
             "label": "garbage collection",
