@@ -87,22 +87,11 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
     packages = with pkgs; [
-      # vscode config
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          jnoortheen.nix-ide
-          ms-python.python
-        ];
-      })
-      # emulators
+      # gaming
       pcsx2
-      # terminal applications
-      links2
-      tmux
-      nodejs
+      lutris
+      # browser
       firefox-wayland
-      # Notes
-      obsidian
     ];
   };
 
@@ -116,22 +105,21 @@
       excludePackages = with pkgs; [
         epiphany
         gnome-tour
+        gnome.geary
         yelp
       ];
     };
     systemPackages = with pkgs; [
-      neovim
-      pciutils
+      # tui applications
+      links2
+      tmux
+      alpine
+      # cli editors
+      vim
+      # cli applications
       git
+      pciutils
       wine
-      # Lutris pkgs
-      (lutris.override {
-         extraPkgs = pkgs: [
-           # List package dependencies here
-           wine64
-           winetricks
-         ];
-      })
     ];
   };
 
@@ -141,8 +129,6 @@
     steam.enable = true;
     # Shell aliases
     bash.shellAliases = {
-      vim = "nvim";
-      vi = "nvim";
       gedit = "gnome-text-editor";
     };
     fish.enable = true;
@@ -151,14 +137,21 @@
     tmux = {
       enable = true;
       extraConfig = ''
-        set -g default-shell fish
+        set -g default-shell ${pkgs.fish}/bin/fish
         set-option -g mouse on
         set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} %H:%M '
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
+    # nano configuration
+    nano.nanorc = ''
+      set nowrap
+      set tabstospaces
+      set tabsize 2
+      set linenumbers
+    '';
   };
-
+  #services.emacs.package = with pkgs; ((emacsPackagesFor emacs-nox).emacsWithPackages (epkgs: [ epkgs.evil ]));
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
