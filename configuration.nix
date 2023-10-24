@@ -14,6 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.hostname = "workstation";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -87,11 +88,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
     packages = with pkgs; [
-      # gaming
-      pcsx2
-      lutris
-      # browser
-      firefox-wayland
+      flatpak # add to .profile export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share`
     ];
   };
 
@@ -107,26 +104,18 @@
         gnome-tour
         gnome.geary
         yelp
+        xterm
       ];
     };
     systemPackages = with pkgs; [
-      # tui applications
-      links2
       tmux
-      alpine
-      # cli editors
-      vim
-      # cli applications
       git
       pciutils
-      wine
     ];
   };
 
   programs = rec {
-    noisetorch.enable = true;
     dconf.enable = true;
-    steam.enable = true;
     # Shell aliases
     bash.shellAliases = {
       gedit = "gnome-text-editor";
@@ -137,10 +126,7 @@
     tmux = {
       enable = true;
       extraConfig = ''
-        set -g default-shell ${pkgs.fish}/bin/fish
         set-option -g mouse on
-        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} %H:%M '
-        run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
     # nano configuration
@@ -170,7 +156,9 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  
+
+  system.stateVersion = "23.05";
+
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
     gc = {
