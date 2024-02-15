@@ -3,12 +3,11 @@
 | Component | Device |
 | --- | --- |
 | CPU | Intel® Core™ i3-12100 |
-| GPU | NVIDIA K2000D |
+| GPU | NVIDIA 4060 |
 | RAM | 32GB Kingston ValueRAM DDR5-5200 DIMM CL 42 Dual Kit |
 | MB | Biostar B760MZ-E Pro (B760,S1700,mATX,Intel) |
-| HDD | 4TB Toshiba NAS N300 / 4TB Seagate IronWolf ST4000VN006 |
-| SSD | 512GB Crucial P5 Plus / 2TB Kingston NV2 NVMe |
-| Case | Chenbro SR20969+ U3 |
+| SSD | 512GB Crucial P5 Plus |
+| Case | Generic Office |
 | CPU Cooler | NH-D15 |
 
 # Enjoy!
