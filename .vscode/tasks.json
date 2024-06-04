@@ -6,7 +6,7 @@
         {
             "label": "rebuild",
             "type": "shell",
-            "command": "nixos-rebuild switch -use-remote-sudo"
+            "command": "nixos-rebuild switch --use-remote-sudo"
         },
         {
             "label": "rebuild and upgrade",
